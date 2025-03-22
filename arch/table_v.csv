@@ -1,0 +1,21 @@
+0,Syntax,A,B,C
+1,Rd = Rs op IMM16,Rd,Rs,IMM16
+2,Rd = Rs op [A16],Rd,Rs,[A16]
+3,[A16] = Rd op Rs,[A16],Rs,Rd
+4,Ra = Rb op IMM16,Ra,Rb,IMM16
+5,Ra = Rb op [A16],Ra,Rb,[A16]
+6,[A16] = Ra op Rb,[A16],Rb,Ra
+
+0,OP,Type,Syntax,N,Z,S,C
+1,0000,ADD,A  ＝  B + C;,●,●,●,●
+2,0001,ADC,"A  ＝  B + C, Carry;",●,●,●,●
+3,0010,SUB,A  ＝  B－C;,●,●,●,●
+4,0011,SBC,"A  ＝  B－C, Carry;",●,●,●,●
+5,0100,CMP,"CMP B, C;",●,●,●,●
+6,0110,NEG,A  ＝－  C;,●,●,-,-
+7,1000,XOR,A  ＝  B ^ C;,●,●,-,-
+8,1001,LOAD,A  ＝  C;,●,●,-,-
+9,1010,OR,A  ＝  B｜C;,●,●,-,-
+10,1011,AND,A  ＝  B & C;,●,●,-,-
+11,1100,TEST,"TEST B, C;",●,●,-,-
+12,1101,STORE,C  ＝  B;,-,-,-,-

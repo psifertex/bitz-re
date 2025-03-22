@@ -1,0 +1,33 @@
+,0,1,2,3
+0,OP,Syntax,Condition,Description
+1,0000,JCC,C==0,carry clear
+2,0000,JB,C==0,below (unsigned)
+3,0000,JNAE,C==0,not above and equal (unsigned)
+4,0001,JCS,C==1,carry set
+5,0001,JNB,C==1,not below (unsigned)
+6,0001,JAE,C==1,above and equal ( unsigned )
+7,0010,JSC,S==0,sign clear
+8,0010,JGE,S==0,great and equal ( signed )
+9,0010,JNL,S==0,not less (signed)
+10,0011,JSS,S==1,sign set
+11,0011,JNGE,S==1,not great than (signed)
+12,0011,JL,S==1,Less (signed)
+13,0100,JNE,Z==0,not equal
+14,0100,JNZ,Z==0,not zero
+15,0101,JZ,Z==1,zero
+16,0101,JE,Z==1,equal
+17,0110,JPL,N==0,plus
+18,0111,JMI,N==1,minus
+19,1000,JBE,Not (Z==0 and C==1),below and equal ( unsigned )
+20,1000,JNA,Not (Z==0 and C==1),not above ( unsigned )
+21,1001,JNBE,Z==0 and C==1,not below and equal (unsigned)
+22,1001,JA,Z==0 and C==1,above ( unsigned )
+23,1010,JLE,Not (Z==0 and S==0),less and equal ( signed )
+24,1010,JNG,Not (Z==0 and S==0),not great ( signed )
+25,1011,JNLE,Z==0 and S==0,not less and equal ( signed )
+26,1011,JG,Z==0 and S==0,great ( signed )
+27,1100,JVC,N == S,not overflow (signed)
+28,1101,JVS,N != S,overflow (signed)
+29,1110,JMP,Always,unconditional branch
+30,0000,JCC,C==0,carry clear
+31,0000,JB,C==0,below (unsigned)

@@ -1,0 +1,748 @@
+{
+  "instruction_set": [
+    {
+      "name": "DSI6",
+      "syntax": "DS=IM6",
+      "encoding": {
+        "opcode": "11111110",
+        "fields": [
+          {
+            "name": "IM6",
+            "bits": "5:0",
+            "description": "6-bit immediate value"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CALL",
+      "syntax": "CALL A22",
+      "encoding": {
+        "opcode": "11110001",
+        "fields": [
+          {
+            "name": "A22[21:16]",
+            "bits": "5:0",
+            "description": "Upper 6 bits of target address"
+          },
+          {
+            "name": "A22[15:0]",
+            "bits": "15:0",
+            "description": "Lower 16 bits of target address",
+            "second_word": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "JMPF",
+      "syntax": "GOTO A22",
+      "encoding": {
+        "opcode": "11111010",
+        "fields": [
+          {
+            "name": "A22[21:16]",
+            "bits": "5:0",
+            "description": "Upper 6 bits of target address"
+          },
+          {
+            "name": "A22[15:0]",
+            "bits": "15:0",
+            "description": "Lower 16 bits of target address",
+            "second_word": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "JMPR",
+      "syntax": "GOTO MR",
+      "encoding": {
+        "opcode": "11111011",
+        "fields": []
+      }
+    },
+    {
+      "name": "FIR_MOV",
+      "syntax": "FIR_MOV ON/OFF",
+      "encoding": {
+        "opcode": "11110100010",
+        "fields": [
+          {
+            "name": "FIR",
+            "bits": "0",
+            "description": "FIR mode",
+            "values": {
+              "0": "ON",
+              "1": "OFF"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Fraction",
+      "syntax": "FRACTION ON/OFF",
+      "encoding": {
+        "opcode": "11110100011",
+        "fields": [
+          {
+            "name": "FRA",
+            "bits": "0",
+            "description": "Fraction mode",
+            "values": {
+              "0": "ON",
+              "1": "OFF"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "INT SET",
+      "syntax": "INT FIQ/IRQ/OFF",
+      "encoding": {
+        "opcode": "1111010000",
+        "fields": [
+          {
+            "name": "F",
+            "bits": "1",
+            "description": "FIQ bit"
+          },
+          {
+            "name": "I",
+            "bits": "0",
+            "description": "IRQ bit"
+          },
+          {
+            "name": "FI",
+            "bits": "1:0",
+            "description": "FIQ and IRQ settings",
+            "values": {
+              "00": "OFF",
+              "01": "IRQ",
+              "10": "FIQ",
+              "11": "FIQ,IRQ"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "IRQ",
+      "syntax": "IRQ ON/OFF",
+      "encoding": {
+        "opcode": "11110100100",
+        "fields": [
+          {
+            "name": "I",
+            "bits": "0",
+            "description": "IRQ mode",
+            "values": {
+              "0": "OFF",
+              "1": "ON"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "SECBANK",
+      "syntax": "SECBANK ON/OFF",
+      "encoding": {
+        "opcode": "11110100101",
+        "fields": [
+          {
+            "name": "S",
+            "bits": "0",
+            "description": "SECBANK mode",
+            "values": {
+              "0": "OFF",
+              "1": "ON"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "FIQ",
+      "syntax": "FIQ ON/OFF",
+      "encoding": {
+        "opcode": "111101001100",
+        "fields": [
+          {
+            "name": "F",
+            "bits": "1",
+            "description": "FIQ mode",
+            "values": {
+              "0": "OFF",
+              "1": "ON"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "IRQ Nest Mode",
+      "syntax": "IRQNEST ON/OFF",
+      "encoding": {
+        "opcode": "111101001101",
+        "fields": [
+          {
+            "name": "N",
+            "bits": "1",
+            "description": "IRQ Nest mode",
+            "values": {
+              "0": "OFF",
+              "1": "ON"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "BREAK",
+      "syntax": "BREAK",
+      "encoding": {
+        "opcode": "11110110000",
+        "fields": []
+      }
+    },
+    {
+      "name": "CALLR",
+      "syntax": "CALL MR",
+      "encoding": {
+        "opcode": "11110110001",
+        "fields": []
+      }
+    },
+    {
+      "name": "DIVS",
+      "syntax": "DIVS MR,R2",
+      "encoding": {
+        "opcode": "11110110010",
+        "fields": []
+      }
+    },
+    {
+      "name": "DIVQ",
+      "syntax": "DIVQ MR,R2",
+      "encoding": {
+        "opcode": "11110110011",
+        "fields": []
+      }
+    },
+    {
+      "name": "EXP",
+      "syntax": "R2 = EXP R4",
+      "encoding": {
+        "opcode": "11110110100",
+        "fields": []
+      }
+    },
+    {
+      "name": "NOP",
+      "syntax": "NOP",
+      "encoding": {
+        "opcode": "11110110101",
+        "fields": []
+      }
+    },
+    {
+      "name": "DS Access",
+      "syntax": "DS=Rs/ Rs=DS",
+      "encoding": {
+        "opcode": "1111000100",
+        "fields": [
+          {
+            "name": "W",
+            "bits": "2",
+            "description": "Write direction (0: DS=Rs, 1: Rs=DS)"
+          },
+          {
+            "name": "Rs",
+            "bits": "1:0",
+            "description": "Source/destination register",
+            "register": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "FR Access",
+      "syntax": "FR=Rs/ Rs=FR",
+      "encoding": {
+        "opcode": "1111000110",
+        "fields": [
+          {
+            "name": "W",
+            "bits": "2",
+            "description": "Write direction (0: FR=Rs, 1: Rs=FR)"
+          },
+          {
+            "name": "Rs",
+            "bits": "1:0",
+            "description": "Source/destination register",
+            "register": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "MUL",
+      "syntax": "MR = Rd* Rs, {ss/us/uu}",
+      "encoding": {
+        "opcode": "1110000",
+        "fields": [
+          {
+            "name": "SRs",
+            "bits": "12",
+            "description": "Rs sign mode"
+          },
+          {
+            "name": "Rd",
+            "bits": "10:8",
+            "description": "Destination register",
+            "register": true
+          },
+          {
+            "name": "SRd",
+            "bits": "7",
+            "description": "Rd sign mode"
+          },
+          {
+            "name": "Rs",
+            "bits": "1:0",
+            "description": "Source register",
+            "register": true
+          },
+          {
+            "name": "S",
+            "bits": "12:7",
+            "description": "Sign mode combination",
+            "values": {
+              "100000": "ss",
+              "101000": "us",
+              "110000": "uu"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "MULS",
+      "syntax": "MR = [Rd]*[Rs], {ss/us/uu},N",
+      "encoding": {
+        "opcode": "1111",
+        "fields": [
+          {
+            "name": "SRs",
+            "bits": "12",
+            "description": "Rs sign mode"
+          },
+          {
+            "name": "Rd",
+            "bits": "10:8",
+            "description": "Destination register",
+            "register": true
+          },
+          {
+            "name": "SRd",
+            "bits": "7",
+            "description": "Rd sign mode"
+          },
+          {
+            "name": "Size",
+            "bits": "6",
+            "description": "Multiply size"
+          },
+          {
+            "name": "Rs",
+            "bits": "1:0",
+            "description": "Source register",
+            "register": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Register BITOP",
+      "syntax": "BITOP Rd,Rs",
+      "encoding": {
+        "opcode": "11100000",
+        "fields": [
+          {
+            "name": "Rd",
+            "bits": "10:8",
+            "description": "Destination register",
+            "register": true
+          },
+          {
+            "name": "Bitop",
+            "bits": "6:5",
+            "description": "Bit operation",
+            "values": {
+              "00": "TSTB",
+              "01": "SETB",
+              "10": "CLRB",
+              "11": "INVB"
+            }
+          },
+          {
+            "name": "Rs",
+            "bits": "1:0",
+            "description": "Source register",
+            "register": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Register BITOP",
+      "syntax": "BITOP Rd,offset",
+      "encoding": {
+        "opcode": "11100010",
+        "fields": [
+          {
+            "name": "Rd",
+            "bits": "10:8",
+            "description": "Destination register",
+            "register": true
+          },
+          {
+            "name": "Bitop",
+            "bits": "6:5",
+            "description": "Bit operation",
+            "values": {
+              "00": "TSTB",
+              "01": "SETB",
+              "10": "CLRB",
+              "11": "INVB"
+            }
+          },
+          {
+            "name": "Offset",
+            "bits": "2:0",
+            "description": "Bit offset (0-7)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Memory BITOP",
+      "syntax": "BITOP {D:}[Rd],offset",
+      "encoding": {
+        "opcode": "1110011",
+        "fields": [
+          {
+            "name": "Rd",
+            "bits": "10:8",
+            "description": "Base register",
+            "register": true
+          },
+          {
+            "name": "D",
+            "bits": "6",
+            "description": "Dereference mode (0: normal, 1: with DS prefix)"
+          },
+          {
+            "name": "Bitop",
+            "bits": "5:4",
+            "description": "Bit operation",
+            "values": {
+              "00": "TSTB",
+              "01": "SETB",
+              "10": "CLRB",
+              "11": "INVB"
+            }
+          },
+          {
+            "name": "Offset",
+            "bits": "2:0",
+            "description": "Bit offset (0-7)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Memory BITOP",
+      "syntax": "BITOP {D:}[Rd],Rs",
+      "encoding": {
+        "opcode": "1110010",
+        "fields": [
+          {
+            "name": "Rd",
+            "bits": "10:8",
+            "description": "Base register",
+            "register": true
+          },
+          {
+            "name": "D",
+            "bits": "6",
+            "description": "Dereference mode (0: normal, 1: with DS prefix)"
+          },
+          {
+            "name": "Bitop",
+            "bits": "5:4",
+            "description": "Bit operation",
+            "values": {
+              "00": "TSTB",
+              "01": "SETB",
+              "10": "CLRB",
+              "11": "INVB"
+            }
+          },
+          {
+            "name": "Rs",
+            "bits": "1:0",
+            "description": "Source register (for bit number)",
+            "register": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Memory BITOP",
+      "syntax": "BITOP {D:}[A16],offset",
+      "encoding": {
+        "opcode": "1111100110",
+        "fields": [
+          {
+            "name": "D",
+            "bits": "11",
+            "description": "Dereference mode (0: normal, 1: with DS prefix)"
+          },
+          {
+            "name": "Bitop",
+            "bits": "5:4",
+            "description": "Bit operation",
+            "values": {
+              "00": "TSTB",
+              "01": "SETB",
+              "10": "CLRB",
+              "11": "INVB"
+            }
+          },
+          {
+            "name": "Offset",
+            "bits": "2:0",
+            "description": "Bit offset (0-7)"
+          },
+          {
+            "name": "A16",
+            "bits": "15:0",
+            "description": "16-bit address",
+            "second_word": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "16 bits Shift",
+      "syntax": "Rd=Rd LSFT Rs",
+      "encoding": {
+        "opcode": "111010",
+        "fields": [
+          {
+            "name": "Rd",
+            "bits": "10:8",
+            "description": "Destination register",
+            "register": true
+          },
+          {
+            "name": "LSFT",
+            "bits": "6:5",
+            "description": "Shift operation",
+            "values": {
+              "00": "ASR",
+              "01": "LSR",
+              "10": "SHL",
+              "11": "ROL"
+            }
+          },
+          {
+            "name": "Rs",
+            "bits": "1:0",
+            "description": "Source register (shift amount)",
+            "register": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "RETI",
+      "syntax": "RETI",
+      "encoding": {
+        "opcode": "1001101010011000",
+        "fields": []
+      }
+    },
+    {
+      "name": "RETF",
+      "syntax": "RETF",
+      "encoding": {
+        "opcode": "1001101010010000",
+        "fields": []
+      }
+    },
+    {
+      "name": "Base+Disp6",
+      "syntax": "Rd = Rd op [ BP+IM6]",
+      "encoding": {
+        "opcode": "000",
+        "fields": [
+          {
+            "name": "OP",
+            "bits": "15:12",
+            "description": "Operation code",
+            "values": {
+              "0000": "ADD",
+              "0001": "ADC",
+              "0010": "SUB",
+              "0011": "SBC",
+              "0100": "CMP",
+              "0110": "NEG",
+              "1000": "XOR",
+              "1001": "LOAD",
+              "1010": "OR",
+              "1011": "AND",
+              "1100": "TEST",
+              "1101": "STORE"
+            }
+          },
+          {
+            "name": "Rd",
+            "bits": "10:8",
+            "description": "Destination register",
+            "register": true
+          },
+          {
+            "name": "IM6",
+            "bits": "5:0",
+            "description": "6-bit immediate displacement"
+          }
+        ]
+      }
+    },
+    {
+      "name": "IMM6",
+      "syntax": "Rd = Rd op IM6",
+      "encoding": {
+        "opcode": "001",
+        "fields": [
+          {
+            "name": "OP",
+            "bits": "15:12",
+            "description": "Operation code",
+            "values": {
+              "0000": "ADD",
+              "0001": "ADC",
+              "0010": "SUB",
+              "0011": "SBC",
+              "0100": "CMP",
+              "0110": "NEG",
+              "1000": "XOR",
+              "1001": "LOAD",
+              "1010": "OR",
+              "1011": "AND",
+              "1100": "TEST",
+              "1101": "STORE"
+            }
+          },
+          {
+            "name": "Rd",
+            "bits": "10:8",
+            "description": "Destination register",
+            "register": true
+          },
+          {
+            "name": "IM6",
+            "bits": "5:0",
+            "description": "6-bit immediate value"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Branch",
+      "syntax": "Jxx label",
+      "encoding": {
+        "opcode": "1100",
+        "fields": [
+          {
+            "name": "OP",
+            "bits": "15:12",
+            "description": "Branch condition code",
+            "values": {
+              "0000": "JCC",
+              "0001": "JCS",
+              "0010": "JSC",
+              "0011": "JSS",
+              "0100": "JNE",
+              "0101": "JE",
+              "0110": "JPL",
+              "0111": "JMI",
+              "1000": "JBE",
+              "1001": "JA",
+              "1010": "JLE",
+              "1011": "JG",
+              "1100": "JVC",
+              "1101": "JVS",
+              "1110": "JMP"
+            }
+          },
+          {
+            "name": "D",
+            "bits": "6",
+            "description": "Direction (0: forward, 1: backward)"
+          },
+          {
+            "name": "IM6",
+            "bits": "5:0",
+            "description": "6-bit immediate displacement"
+          }
+        ]
+      }
+    }
+  ],
+  "registers": {
+    "Rs_Rd": {
+      "000": "SP",
+      "001": "R1",
+      "010": "R2",
+      "011": "R3",
+      "100": "R4",
+      "101": "BP",
+      "110": "SR",
+      "111": "PC"
+    },
+    "Ra_Rb": {
+      "0000": "SP",
+      "0001": "R1",
+      "0010": "R2",
+      "0011": "R3",
+      "0100": "R4",
+      "0101": "BP",
+      "0110": "SR",
+      "0111": "PC",
+      "1000": "R8",
+      "1001": "R9",
+      "1010": "R10",
+      "1011": "R11",
+      "1100": "R12",
+      "1101": "R13",
+      "1110": "R14",
+      "1111": "R15"
+    },
+    "Rx_Ry": {
+      "000": "R8",
+      "001": "R9",
+      "010": "R10",
+      "011": "R11",
+      "100": "R12",
+      "101": "R13",
+      "110": "R14",
+      "111": "R15"
+    }
+  }
+}

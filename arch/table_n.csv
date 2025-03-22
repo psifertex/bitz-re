@@ -1,0 +1,4 @@
+,0,1,2
+0,Syntax,D,Description
+1,D:[],1,The MSB 6-bits of accessing address is data segment (DS).
+2,[],0,The MSB 6-bits of accessing address is zero.

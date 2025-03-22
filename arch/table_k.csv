@@ -1,0 +1,11 @@
+,0,1,2,3,4
+0,Syntax,"{S
+,S
+}   
+Rs
+Rd",Rd*Rs/[Rd]*[Rs],ISA,
+1,,,,1.1,"1.2 
+2.0"
+2,uu,00,Unsigned*Unsigned,Not Support,Support
+3,us,10,Unsigned*Signed,Support,
+4,ss,11,Signed*Signed,,

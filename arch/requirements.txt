@@ -1,0 +1,7 @@
+camelot-py
+opencv-python
+ghostscript
+pdf2image
+pillow
+argparse
+tabula-py

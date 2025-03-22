@@ -1,0 +1,60 @@
+Type,Syntax,F,E,D,C,B,A,9,8,7,6,5,4,3,2,1,0
+DSI6,DS=IM6,1,1,1,1,1,1,1,0,0,0,IM6,,,,,
+CALL,CALL A22,1,1,1,1,-,-,0,0,0,1,A22[21:16],,,,,
+CALL,CALL A22,A22[15:0],,,,,,,,,,,,,,,
+JMPF,GOTO A22,"1",1,1,1,1,1,1,0,1,0,A22[21:16],,,,,
+JMPF,GOTO A22,A22[15:0],,,,,,,,,,,,,,,
+JMPR,GOTO MR,1,1,1,1,1,1,1,0,1,1,-,-,-,-,-,-
+FIR_MOV,FIR_MOV ON/OFF,1,1,1,1,-,-,-,1,0,1,0,0,0,1,0,FIR(a)
+Fraction,FRACTION ON/OFF,1,1,1,1,-,-,-,1,0,1,0,0,0,1,1,FRA(b)
+INT SET,INT FIQ/IRQ/OFF,1,1,1,1,-,-,-,1,0,1,0,0,0,0,F(c),I(c)
+IRQ,IRQ ON/OFF,1,1,1,1,-,-,-,1,0,1,0,0,1,0,0,I(d)
+SECBANK,SECBANK ON/OFF,1,1,1,1,-,-,-,1,0,1,0,0,1,0,1,S(e)
+FIQ,FIQ ON/OFF,1,1,1,1,-,-,-,1,0,1,0,0,1,1,F(f),0
+IRQ Nest Mode,IRQNEST ON/OFF,1,1,1,1,-,-,-,1,0,1,0,0,1,1,N(g),1
+BREAK,BREAK,1,1,1,1,-,-,-,1,0,1,1,-,-,0,0,0
+CALLR,CALL MR,1,1,1,1,-,-,-,1,0,1,1,-,-,0,0,1
+DIVS,"DIVS MR,R2",1,1,1,1,-,-,-,1,0,1,1,-,-,0,1,0
+DIVQ,"DIVQ MR,R2",1,1,1,1,-,-,-,1,0,1,1,-,-,0,1,1
+EXP,R2 = EXP R4,1,1,1,1,-,-,-,1,0,1,1,-,-,1,0,0
+NOP,NOP,1,1,1,1,-,-,-,1,0,1,1,-,-,1,0,1
+DS Access,DS=Rs/ Rs=DS,1,1,1,1,-,-,-,0,0,0,1,0,W(h),Rs(i),,
+FR Access,FR=Rs/ Rs=FR,1,1,1,1,-,-,-,0,0,0,1,1,W(j),Rs(i),,
+MUL,"MR = Rd* Rs, {ss/us/uu}",1,1,1,SRs(k),Rd(i),SRd(k),,,0,0,0,0,1,Rs(i),,
+MULS,"MR = [Rd]*[Rs], 
+{ss/us/uu},N",1,1,1,SRs(k),Rd(i),SRd(k),,,1,Size(l),,,,Rs(i),,
+Register BITOP,"BITOP Rd,Rs",1,1,1,0,Rd(i),,,0,0,0,Bitop(m),,0,Rs(i),,
+Register BITOP,"BITOP Rd,offset",1,1,1,0,Rd(i),,,0,0,1,Bitop(m),,Offset,,,
+Memory BITOP,"BITOP {D:}[Rd],offset",1,1,1,0,Rd(i),,,1,1,D(n),Bitop(m),,Offset,,,
+Memory BITOP,"BITOP {D:}[Rd],Rs",1,1,1,0,Rd(i),,,1,0,D(n),Bitop(m),0,Rs(i),,,
+Memory BITOP,"BITOP {D:}[A16],offset",1,1,1,1,-,D(n),1,0,0,1,Bitop(m),Offset,,,,
+Memory BITOP,"BITOP {D:}[A16],offset",A16,,,,,,,,,,,,,,,
+16 bits Shift,Rd=Rd LSFT Rs,1,1,1,0,Rd(i),,,1,0,LSFT(o),,,1,Rs(i),,
+RETI,RETI,1,0,0,1,1,0,1,0,1,0,0,1,1,0,0,0
+RETF,RETF,1,0,0,1,1,0,1,0,1,0,0,1,0,0,0,0
+Base+Disp6,Rd = Rd op [ BP+IM6],OP(p),,,,Rd(i),,,0,0,0,IM6,,,,,
+IMM6,Rd = Rd op IM6,OP(p),,,,Rd(i),,,0,0,1,IM6,,,,,
+Branch,Jxx label,OP(q),,,,"1",1,1,0,0,D(r),IM6,,,,,
+Stack Operation,"Push/Pop RH,RL to [Rs]",OP(s),,,,"R(H)=Rd(i)",,,0,1,0,"Size(t)",,,"Rs(i)",,
+DS_Indirect,Rd = Rd op D:[Rs@],"OP(p)",,,,"Rd(i)",,,0,1,1,"D(n)","@(u)",,Rs(i),,
+IMM16,Rd = Rs op IMM16,"OP(v)",,,,"Rd(i)",,,1,0,0,0,"0",1,Rs(i),,
+IMM16,Rd = Rs op IMM16,IMM16,,,,,,,,,,,,,,,
+Direct16,"Rd = Rs op [A16] (W = 0) 
+[A16] = Rd op Rs (W = 1)","OP(v)",,,,Rd(i),,,1,0,0,0,1,W,Rs(i),,
+Direct16,"Rd = Rs op [A16] (W = 0) 
+[A16] = Rd op Rs (W = 1)",A16,,,,,,,,,,,,,,,
+Direct6,Rd = Rd op [A6],"OP(p)",,,,"Rd(i)",,,1,"1",1,A6,,,,,
+Register,Rd = Rd op Rs SFT N,"OP(p)",,,,"Rd(i)",,,1,SFT(w),,,"SFC(x)",,Rs(i),,
+Ext Code(y),,"1",1,1,1,"1",1,1,1,1,1,0,0,0,"1",1,1
+Ext Register,Ra=Ra op Rb,"OP(p)",,,,"Ra(2-0(i))",,,"Ra(3(i))",0,0,0,0,"Rb(i)",,,
+Ext Push/Pop,"Push R(H), R(L) to [Rb](W = 1) Pop R(H), R(L) to [Rb](W = 0)",W,"Size(t)",,,"R(H)=Rx(i)",,,0,0,0,1,0,"Rb(i)",,,
+Ext IMM16,Ra=Rb op IMM16,"OP(v)",,,,"Ra(2-0(i))",,,"Ra(3(i))",0,1,0,0,Rb(i),,,
+Ext IMM16,Ra=Rb op IMM16,IMM16,,,,,,,,,,,,,,,
+Ext A16,"Ra=Rb op [A16] (W=0) 
+[A16] = Ra op Rb(W=1)","OP(v)",,,,Ra(2-0(i)),,,Ra(3(i)),0,1,0,0,Rb(i),,,
+Ext A16,"Ra=Rb op [A16] (W=0) 
+[A16] = Ra op Rb(W=1)",A16,,,,,,,,,,,,,,,
+Ext DS_Indirect,Rx=Rx op D:[Ry@],"OP(p)",,,,"Rx(i)",,,0,1,0,"D(n)",@(u),,Ry(i),,
+Ext IM6,Rx=Rx op IM6,"OP(p)",,,,"Rx(i)",,,1,1,0,IM6,,,,,
+Ext Base+Disp6,Rx=Rx op [BP+IM6],"OP(p)",,,,"Rx(i)",,,0,1,1,A6,,,,,
+Ext A6,Rx=Rx op [A6],"OP(p)",,,,"Rx(i)",,,1,1,1,A6,,,,,
